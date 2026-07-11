@@ -1,0 +1,1256 @@
+/* ========================================
+   ColidbuMCP 网站全局样式表
+   Global Stylesheet with Poki-style Rich Animations
+   ======================================== */
+
+/* Root CSS 变量 Variables */
+:root {
+    --color-primary: #FF6B6B;
+    --color-secondary: #4ECDC4;
+    --color-tertiary: #45B7D1;
+    --color-accent: #F8B500;
+    --color-dark: #2D3436;
+    --color-light: #F5F7FA;
+    --color-white: #FFFFFF;
+    --color-text: #333333;
+    --color-border: #E0E0E0;
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ========================================
+   基础样式 Base Styles
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--color-text);
+    background-color: var(--color-white);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ========================================
+   导航栏 Navigation Bar
+   ======================================== */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    animation: slideDown 0.6s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    cursor: pointer;
+    animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.2s both;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    animation: spin 20s linear infinite;
+}
+
+@keyframes spin {
+    0%, 100% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.brand-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-white);
+    letter-spacing: 0.5px;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-menu a {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    transition: var(--transition-smooth);
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-white);
+    transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--color-white);
+    margin: 5px 0;
+    transition: var(--transition-smooth);
+    border-radius: 2px;
+}
+
+/* ========================================
+   Hero 部分 Hero Section
+   ======================================== */
+
+.hero {
+    margin-top: 80px;
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-tertiary) 100%);
+    color: var(--color-white);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 4rem;
+    position: relative;
+    overflow: hidden;
+    min-height: calc(100vh - 80px);
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    animation: moveBackground 20s linear infinite;
+}
+
+@keyframes moveBackground {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(20px, 20px); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    animation: slideInLeft 0.8s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 300;
+    animation: fadeInUp 0.8s ease-out 0.4s both;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.8;
+    animation: fadeInUp 0.8s ease-out 0.6s both;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    animation: fadeInUp 0.8s ease-out 0.8s both;
+}
+
+.hero-animation {
+    position: relative;
+    height: 400px;
+    z-index: 2;
+}
+
+.floating-element {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.el-1 {
+    width: 80px;
+    height: 80px;
+    top: 10%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.el-2 {
+    width: 120px;
+    height: 120px;
+    top: 30%;
+    right: 5%;
+    animation-delay: 1s;
+}
+
+.el-3 {
+    width: 60px;
+    height: 60px;
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 2s;
+}
+
+.el-4 {
+    width: 100px;
+    height: 100px;
+    bottom: 10%;
+    right: 15%;
+    animation-delay: 1.5s;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-30px) rotate(180deg);
+    }
+}
+
+/* ========================================
+   按钮样式 Button Styles
+   ======================================== */
+
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transition-bounce);
+    cursor: pointer;
+    border: 2px solid transparent;
+    font-size: 1rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-tertiary));
+    color: var(--color-white);
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 24px rgba(255, 107, 107, 0.4);
+}
+
+.btn-secondary {
+    background: var(--color-white);
+    color: var(--color-primary);
+    border-color: var(--color-white);
+}
+
+.btn-secondary:hover {
+    background: transparent;
+    color: var(--color-white);
+    transform: scale(1.05);
+}
+
+/* ========================================
+   容器和网格 Container & Grid
+   ======================================== */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* ========================================
+   特性部分 Features Section
+   ======================================== */
+
+.features {
+    padding: 6rem 2rem;
+    background: linear-gradient(to bottom, var(--color-light), var(--color-white));
+}
+
+.features h2,
+.our-games h2,
+.service-packages h2,
+.faq-section h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    animation: slideInDown 0.6s ease-out;
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.features h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    margin: 1rem auto 0;
+    border-radius: 2px;
+    animation: expandWidth 0.8s ease-out;
+}
+
+@keyframes expandWidth {
+    from {
+        width: 0;
+    }
+    to {
+        width: 80px;
+    }
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    transition: var(--transition-bounce);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    animation: scaleIn 0.6s ease-out both;
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.feature-card:nth-child(1) { animation-delay: 0.1s; }
+.feature-card:nth-child(2) { animation-delay: 0.2s; }
+.feature-card:nth-child(3) { animation-delay: 0.3s; }
+.feature-card:nth-child(4) { animation-delay: 0.4s; }
+.feature-card:nth-child(5) { animation-delay: 0.5s; }
+.feature-card:nth-child(6) { animation-delay: 0.6s; }
+
+.feature-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: spin 3s linear infinite;
+}
+
+.feature-card:hover .feature-icon {
+    animation: pulse 0.6s ease-out;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.feature-icon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.feature-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+}
+
+.feature-card p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* ========================================
+   服务部分 Services Section
+   ======================================== */
+
+.page-header {
+    margin-top: 80px;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-tertiary));
+    color: var(--color-white);
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.page-header p {
+    font-size: 1.1rem;
+}
+
+.services-main {
+    padding: 6rem 2rem;
+    background: linear-gradient(to bottom, var(--color-light), var(--color-white));
+}
+
+.service-section {
+    margin-bottom: 4rem;
+}
+
+.service-section h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.service-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.service-card {
+    background: var(--color-white);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: var(--transition-bounce);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid var(--color-primary);
+    animation: slideInRight 0.6s ease-out both;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.service-card:nth-child(odd) { animation-delay: 0.1s; }
+.service-card:nth-child(even) { animation-delay: 0.2s; }
+.service-card:nth-child(3n) { animation-delay: 0.3s; }
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    border-left-color: var(--color-secondary);
+}
+
+.service-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+}
+
+.service-card h3 {
+    color: var(--color-primary);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.service-features {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.service-features li {
+    padding: 0.4rem 0;
+    color: #666;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--color-border);
+    animation: slideInLeft 0.4s ease-out backwards;
+}
+
+.service-features li:hover {
+    padding-left: 0.5rem;
+    color: var(--color-primary);
+}
+
+/* ========================================
+   统计部分 Stats Section
+   ======================================== */
+
+.stats {
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: var(--color-white);
+}
+
+.stats .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 3rem;
+    text-align: center;
+}
+
+.stat-item {
+    animation: countUp 2s ease-out;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    animation: slideInUp 0.8s ease-out;
+}
+
+.stat-item p {
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+/* ========================================
+   联系表单 Contact Form
+   ======================================== */
+
+.contact-section {
+    padding: 6rem 2rem;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.contact-info h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--color-primary);
+}
+
+.contact-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    animation: slideInLeft 0.6s ease-out both;
+}
+
+.contact-item:nth-child(1) { animation-delay: 0.1s; }
+.contact-item:nth-child(2) { animation-delay: 0.2s; }
+.contact-item:nth-child(3) { animation-delay: 0.3s; }
+
+.contact-icon {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-icon svg {
+    width: 30px;
+    height: 30px;
+}
+
+.contact-item h3 {
+    color: var(--color-primary);
+    margin-bottom: 0.3rem;
+}
+
+.contact-desc {
+    font-size: 0.9rem;
+    color: #999;
+}
+
+.contact-form-wrapper {
+    background: linear-gradient(135deg, var(--color-light), var(--color-white));
+    padding: 2.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    animation: slideInRight 0.8s ease-out;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.form-group:nth-child(1) { animation-delay: 0.1s; }
+.form-group:nth-child(2) { animation-delay: 0.2s; }
+.form-group:nth-child(3) { animation-delay: 0.3s; }
+.form-group:nth-child(4) { animation-delay: 0.4s; }
+.form-group:nth-child(5) { animation-delay: 0.5s; }
+.form-group:nth-child(6) { animation-delay: 0.6s; }
+
+.form-group label {
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 0.8rem;
+    border: 2px solid var(--color-border);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: var(--transition-smooth);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-group.checkbox {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.form-group.checkbox input {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+}
+
+.form-group.checkbox label {
+    margin-bottom: 0;
+}
+
+.form-error {
+    color: var(--color-primary);
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+    display: none;
+}
+
+.submit-btn {
+    margin-top: 1rem;
+    animation: slideInUp 0.8s ease-out 0.7s both;
+}
+
+.form-response {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 8px;
+    display: none;
+    animation: slideInUp 0.4s ease-out;
+}
+
+.form-response.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    display: block;
+}
+
+.form-response.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    display: block;
+}
+
+/* ========================================
+   FAQ 部分 FAQ Section
+   ======================================== */
+
+.faq-section {
+    padding: 6rem 2rem;
+    background: var(--color-light);
+}
+
+.faq-section h2 {
+    margin-bottom: 3rem;
+}
+
+.faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.faq-item {
+    background: var(--color-white);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: var(--transition-bounce);
+    animation: scaleIn 0.6s ease-out both;
+    cursor: pointer;
+}
+
+.faq-item:nth-child(1) { animation-delay: 0.1s; }
+.faq-item:nth-child(2) { animation-delay: 0.15s; }
+.faq-item:nth-child(3) { animation-delay: 0.2s; }
+.faq-item:nth-child(4) { animation-delay: 0.25s; }
+.faq-item:nth-child(5) { animation-delay: 0.3s; }
+.faq-item:nth-child(6) { animation-delay: 0.35s; }
+
+.faq-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.faq-item h3 {
+    color: var(--color-primary);
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+}
+
+.faq-item p {
+    color: #666;
+    line-height: 1.6;
+}
+
+/* ========================================
+   服务包 Service Packages
+   ======================================== */
+
+.service-packages {
+    padding: 6rem 2rem;
+    background: linear-gradient(to bottom, var(--color-white), var(--color-light));
+}
+
+.packages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.package {
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: 12px;
+    border: 2px solid var(--color-border);
+    text-align: center;
+    transition: var(--transition-bounce);
+    position: relative;
+    animation: slideInUp 0.6s ease-out both;
+}
+
+.package:nth-child(1) { animation-delay: 0.1s; }
+.package:nth-child(2) { animation-delay: 0.2s; }
+.package:nth-child(3) { animation-delay: 0.3s; }
+
+.package.featured {
+    transform: scale(1.05);
+    border-color: var(--color-primary);
+    box-shadow: 0 15px 40px rgba(255, 107, 107, 0.2);
+}
+
+.featured-badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s both;
+}
+
+.package:hover:not(.featured) {
+    transform: translateY(-10px);
+    border-color: var(--color-secondary);
+}
+
+.package h3 {
+    font-size: 1.5rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.package .price {
+    color: #999;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.package ul {
+    list-style: none;
+    margin-bottom: 2rem;
+    text-align: left;
+}
+
+.package li {
+    padding: 0.6rem 0;
+    color: #666;
+    border-bottom: 1px solid var(--color-border);
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.package li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--color-secondary);
+    font-weight: bold;
+}
+
+/* ========================================
+   我们的游戏 Our Games
+   ======================================== */
+
+.our-games {
+    padding: 6rem 2rem;
+    background: linear-gradient(to bottom, var(--color-light), var(--color-white));
+}
+
+.section-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 3rem;
+}
+
+.games-showcase {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.game-placeholder {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    padding: 2rem;
+    border-radius: 15px;
+    color: var(--color-white);
+    text-align: center;
+    transition: var(--transition-bounce);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.game-placeholder:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(255, 107, 107, 0.3);
+}
+
+.game-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.store-link {
+    display: inline-block;
+    margin: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background: var(--color-white);
+    color: var(--color-primary);
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+}
+
+.store-link:hover {
+    background: var(--color-light);
+    transform: scale(1.05);
+}
+
+/* ========================================
+   隐私政策/服务条款 Policy Sections
+   ======================================== */
+
+.policy-section {
+    padding: 6rem 2rem;
+    margin-top: 80px;
+    background: linear-gradient(to bottom, var(--color-light), var(--color-white));
+}
+
+.policy-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.policy-section h1 {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    animation: slideInDown 0.6s ease-out;
+}
+
+.last-updated {
+    color: #999;
+    font-size: 0.9rem;
+    margin-bottom: 3rem;
+    animation: fadeIn 0.6s ease-out 0.2s both;
+}
+
+.policy-content {
+    line-height: 1.8;
+}
+
+.policy-subsection {
+    margin-bottom: 3rem;
+    animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.policy-subsection:nth-child(1) { animation-delay: 0s; }
+.policy-subsection:nth-child(2) { animation-delay: 0.1s; }
+.policy-subsection:nth-child(3) { animation-delay: 0.2s; }
+
+.policy-subsection h2 {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--color-secondary);
+    padding-bottom: 0.5rem;
+}
+
+.policy-subsection h3 {
+    color: var(--color-secondary);
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.policy-list {
+    list-style: none;
+    margin-left: 0;
+}
+
+.policy-list li {
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    position: relative;
+    color: #555;
+}
+
+.policy-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--color-secondary);
+    font-weight: bold;
+}
+
+.ad-network-list {
+    margin: 1.5rem 0;
+}
+
+.ad-network-item {
+    background: var(--color-light);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--color-secondary);
+    animation: slideInLeft 0.4s ease-out backwards;
+}
+
+.ad-network-item h4 {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.ad-network-item p {
+    margin: 0.3rem 0;
+    font-size: 0.95rem;
+    color: #666;
+}
+
+.policy-navigation {
+    display: flex;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--color-border);
+    animation: slideInUp 0.6s ease-out 0.8s both;
+}
+
+/* ========================================
+   脚部 Footer
+   ======================================== */
+
+.footer {
+    background: linear-gradient(135deg, var(--color-dark), #1a1a1a);
+    color: var(--color-white);
+    padding: 4rem 2rem 2rem;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h4 {
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+}
+
+.footer-section p {
+    color: #ccc;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+}
+
+.footer-section a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+.footer-section a:hover {
+    color: var(--color-primary);
+    text-decoration: underline;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 0.5rem;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-icon {
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    color: var(--color-white);
+    transition: var(--transition-bounce);
+}
+
+.social-icon:hover {
+    background: var(--color-primary);
+    transform: scale(1.2) rotate(360deg);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #999;
+}
+
+/* ========================================
+   响应式设计 Responsive Design
+   ======================================== */
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 4rem 2rem;
+        min-height: auto;
+    }
+
+    .hero-animation {
+        display: none;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+    }
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .features-grid,
+    .service-cards,
+    .packages-grid,
+    .faq-grid,
+    .games-showcase {
+        grid-template-columns: 1fr;
+    }
+
+    .policy-navigation {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.5rem;
+    }
+
+    .features h2 {
+        font-size: 1.8rem;
+    }
+
+    .container {
+        padding: 0 1rem;
+    }
+
+    .service-section h2 {
+        font-size: 1.3rem;
+    }
+}

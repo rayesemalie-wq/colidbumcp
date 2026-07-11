@@ -1,0 +1,37 @@
+# ColidbuMCP Robots.txt
+# SEO 优化：指导搜索引擎爬虫
+
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin/
+Disallow: /temp/
+Disallow: /*.pdf$
+Disallow: /*.doc$
+
+# 允许谷歌爬虫爬取所有内容
+User-agent: Googlebot
+Allow: /
+
+# 允许必应爬虫爬取所有内容
+User-agent: Bingbot
+Allow: /
+
+# 禁止不友好的爬虫
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# 站点地图位置
+Sitemap: https://colidbumcp.com/sitemap.xml
+
+# 爬虫延迟
+Crawl-delay: 1
+
+# 请求速率
+Request-rate: 1/1s
